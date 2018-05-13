@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="AvtarView"><attr format="dimension" name="textSize"/><attr format="color" name="textColor"/><attr format="color" name="avatarColor"/><attr format="dimension" name="strokeWidth"/><attr format="color" name="strokeColor"/><attr format="string" name="text"/></declare-styleable>
-</resources>
