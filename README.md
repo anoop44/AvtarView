@@ -38,6 +38,7 @@ dependencies {
 		app:textColor="@android:color/white"
 		app:strokeWidth="2dp"
 		app:strokeColor="@android:color/white"
+		app:fontFamily="sans-serif"
 		/>
 ```
 
@@ -47,6 +48,7 @@ dependencies {
     avtarView.setTextColor(Color.WHITE);
     avtarView.setStrokeWidth(2);
     avtarView.setStrokeColor(Color.WHITE);
+    avatarView.setFont(typeface);
 ```
 
 ### Image
