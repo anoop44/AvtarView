@@ -140,8 +140,8 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
     }
 
     override fun onDraw(canvas: Canvas?) {
-        canvas?.clipPath(path)
         if (null != drawable) {
+            canvas?.clipPath(path)
             super.onDraw(canvas)
         } else {
             canvas?.drawCircle(radius, radius, radius, circlePaint)
