@@ -64,6 +64,14 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
         strokePaint.strokeWidth = typedArray.getDimension(R.styleable.AvtarView_strokeWidth, dpToPx(DEFAULT_STROKE_THICKNESS))
         strokePaint.color = typedArray.getColor(R.styleable.AvtarView_strokeColor, DEFAULT_STROKE_COLOR)
 
+        val fontFamily = typedArray.getString(R.styleable.AvtarView_fontFamily)
+        fontFamily?.let {
+            val typeface = Typeface.create(it, Typeface.NORMAL)
+            typeface?.let {
+                textPaint.typeface = it
+            }
+        }
+
         setText(typedArray.getString(R.styleable.AvtarView_text))
     }
 
@@ -89,6 +97,11 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
 
     fun setStrokeColor(strokeColor: Int) {
         strokePaint.color = strokeColor
+        invalidate()
+    }
+
+    fun setFont(font: Typeface){
+        textPaint.typeface = font
         invalidate()
     }
 
