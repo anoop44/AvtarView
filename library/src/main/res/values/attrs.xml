@@ -7,5 +7,6 @@
         <attr name="strokeWidth" format="dimension"/>
         <attr name="strokeColor" format="color"/>
         <attr name="text" format="string"/>
+        <attr name="fontFamily" format="string"/>
     </declare-styleable>
 </resources>
