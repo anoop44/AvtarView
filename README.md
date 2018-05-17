@@ -22,7 +22,7 @@ allprojects {
 Add the dependency:
 ```Groovy
 dependencies {
-    compile 'com.github.anoop44:AvtarView:1.0.1'
+    compile 'com.github.anoop44:AvtarView:1.0.2'
 }
 ```
 
