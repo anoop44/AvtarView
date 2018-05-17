@@ -73,6 +73,8 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
         }
 
         setText(typedArray.getString(R.styleable.AvtarView_text))
+
+        typedArray.recycle()
     }
 
     fun setTextSize(textSize: Float) {
@@ -113,6 +115,8 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
     fun setText(text: String?) {
         text?.let {
             if (!it.isBlank()) {
+                //When setting text, removing existing drawable. Needed especially when used in recyclerview
+                setImageResource(0)
                 textToDraw = it.toCharArray()[0].toString()
                 if(circlePaint.color == DEFAULT_AVTAR_COLOR){
                     var sum = 0
