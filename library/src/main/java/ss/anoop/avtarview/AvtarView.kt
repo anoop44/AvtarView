@@ -40,6 +40,8 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
 
     private var textToDraw: String? = null
 
+    private var useSingleLetter = false
+
     private var rect = Rect()
 
     init {
@@ -72,6 +74,8 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
             }
         }
 
+        useSingleLetter = typedArray.getBoolean(R.styleable.AvtarView_useSingleLetter, false)
+
         setText(typedArray.getString(R.styleable.AvtarView_text))
 
         typedArray.recycle()
@@ -102,8 +106,13 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
         invalidate()
     }
 
-    fun setFont(font: Typeface){
+    fun setFont(font: Typeface) {
         textPaint.typeface = font
+        invalidate()
+    }
+
+    fun setUseSingleLetter(singleLetterUse: Boolean){
+        useSingleLetter = singleLetterUse
         invalidate()
     }
 
@@ -118,9 +127,17 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
                 //When setting text, removing existing drawable. Needed especially when used in recyclerview
                 setImageResource(0)
                 textToDraw = it.toCharArray()[0].toString()
-                if(circlePaint.color == DEFAULT_AVTAR_COLOR){
+                if (!useSingleLetter) {
+                    if (it.contains(" ")) {
+                        val indexOfFirstSpace = it.indexOf(' ')
+                        if (indexOfFirstSpace < it.length) {
+                            textToDraw += it.toCharArray()[indexOfFirstSpace + 1]
+                        }
+                    }
+                }
+                if (circlePaint.color == DEFAULT_AVTAR_COLOR) {
                     var sum = 0
-                    it.toCharArray().forEach { char -> sum+= char.toInt() }
+                    it.toCharArray().forEach { char -> sum += char.toInt() }
                     circlePaint.color = Color.parseColor(AVTAR_COLOR_LIST[sum % AVTAR_COLOR_LIST.size])
                 }
                 invalidate()
@@ -149,13 +166,17 @@ class AvtarView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : 
             super.onDraw(canvas)
         } else {
             canvas?.drawCircle(radius, radius, radius, circlePaint)
-            if (!textToDraw.isNullOrBlank()) {
+            textToDraw?.let {
 
-                textPaint.getTextBounds(textToDraw, 0, 1, rect)
+                if (it.isNotBlank()) {
 
-                canvas?.drawText(textToDraw, radius - rect.width() / 2, radius + rect.height() / 2, textPaint)
+                    textPaint.getTextBounds(textToDraw, 0, it.length, rect)
+
+                    canvas?.drawText(textToDraw, radius - rect.width() / 2, radius + rect.height() / 2, textPaint)
+                }
             }
         }
+
         if (strokePaint.strokeWidth > 0) {
             canvas?.drawCircle(radius, radius, radius - strokePaint.strokeWidth / 2f, strokePaint)
         }

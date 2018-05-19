@@ -22,7 +22,7 @@ allprojects {
 Add the dependency:
 ```Groovy
 dependencies {
-    compile 'com.github.anoop44:AvtarView:1.0.2'
+    compile 'com.github.anoop44:AvtarView:1.0.3'
 }
 ```
 
@@ -38,7 +38,7 @@ dependencies {
 		app:textColor="@android:color/white"
 		app:strokeWidth="2dp"
 		app:strokeColor="@android:color/white"
-		app:fontFamily="sans-serif"
+		app:useSingleLetter="false"
 		/>
 ```
 
@@ -48,7 +48,7 @@ dependencies {
     avtarView.setTextColor(Color.WHITE);
     avtarView.setStrokeWidth(2);
     avtarView.setStrokeColor(Color.WHITE);
-    avatarView.setFont(typeface);
+    avtarView.setUseSingleLetter(false);
 ```
 
 ### Image

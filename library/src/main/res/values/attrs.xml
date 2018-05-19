@@ -8,5 +8,6 @@
         <attr name="strokeColor" format="color"/>
         <attr name="text" format="string"/>
         <attr name="fontFamily" format="string"/>
+        <attr name="useSingleLetter" format="boolean"/>
     </declare-styleable>
 </resources>

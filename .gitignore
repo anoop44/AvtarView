@@ -9,4 +9,6 @@
 /captures
 .externalNativeBuild
 /.idea
+/library/build
+/sample/build
 
