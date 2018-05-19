@@ -10,5 +10,5 @@
 .externalNativeBuild
 /.idea
 /library/build
-/app/build
+/sample/build
 
